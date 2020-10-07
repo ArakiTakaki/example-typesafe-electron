@@ -1,0 +1,82 @@
+{
+  "name": "multi-push-alert",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node scripts/webpack/index.ts -d | yarn pino-pretty -c -t",
+    "start:log": "ts-node scripts/webpack/index.ts -d > log/result.txt",
+    "prebuild": "rimraf dist",
+    "build": "ts-node scripts/webpack/index.ts",
+    "release:win": "electron-builder --windows",
+    "release:mac": "electron-builder --mac",
+    "release:linux": "electron-builder --linux",
+    "release:all": "ts-node scripts/release/index.ts"
+  },
+  "devDependencies": {
+    "@types/animejs": "^3.1.1",
+    "@types/axios": "^0.14.0",
+    "@types/child-process-promise": "^2.2.1",
+    "@types/commander": "^2.12.2",
+    "@types/electron": "^1.6.10",
+    "@types/jest": "^25.2.3",
+    "@types/pino": "^6.0.1",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-transition-group": "^4.4.0",
+    "@types/recoil": "^0.0.0",
+    "@types/webpack": "^4.41.15",
+    "@types/webpack-dev-server": "^3.11.0",
+    "child-process-promise": "^2.2.1",
+    "commander": "^5.1.0",
+    "electron": "^9.0.0",
+    "electron-builder": "^22.7.0",
+    "electron-is-dev": "^1.2.0",
+    "emotion-reset": "^2.0.7",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.3.0",
+    "jest": "^26.0.1",
+    "pino": "^6.3.2",
+    "pino-pretty": "^4.0.0",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.0.0",
+    "ts-loader": "^7.0.5",
+    "ts-node": "^8.10.2",
+    "tsc": "^1.20150623.0",
+    "typescript": "^3.9.3",
+    "webpack": "^4.43.0",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
+    "animejs": "^3.2.0",
+    "axios": "^0.19.2",
+    "nedb-promises": "^4.0.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-spring": "^8.0.27",
+    "react-transition-group": "^4.4.1",
+    "recoil": "^0.0.8"
+  },
+  "build": {
+    "appId": "multi-push-alert",
+    "productName": "MPA - multi-push-alert",
+    "copyright": "Copyright ArakiTakaki. All rights reserved",
+    "win": {
+      "target": "zip"
+    },
+    "mac": {
+      "target": "zip"
+    },
+    "linux": {
+      "target": "zip"
+    },
+    "files": [
+      "./dist",
+      "./dist/index.html",
+      "./dist/renderer.js",
+      "./dist/preload.js"
+    ]
+  }
+}
