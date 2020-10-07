@@ -8,12 +8,25 @@ export const TodoComponent: React.SFC = () => {
     setTodoState([
       ...todoValues,
       {
-        id: Math.random().toString();
+        id: Math.random().toString(),
         title: 'hogehoge',
         completed: true,
       }
     ]);
-  });
+  }, []);
+  const handleChecked =React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const strId = e.currentTarget.value;
+    const result = todoValues.map((val) => {
+      if (val.id !== strId) {
+        return val;
+      }
+      return {
+        ...val,
+        completed: !val.completed,
+      };
+    });
+    setTodoState(result);
+  }, [todoValues]);
 
   return (
     <div>
@@ -25,11 +38,11 @@ export const TodoComponent: React.SFC = () => {
           todoValues.map((todo) => (
             <li key={todo.id}>
               <label>
-                <input type="checkbox" checked={todo.completed}/>
+                <input type="checkbox" checked={todo.completed} value={todo.id} onChange={handleChecked}/>
                 <p>{todo.title}</p>
               </label>
             </li>
-          )
+          ))
         }
       </ul>
     </div>
