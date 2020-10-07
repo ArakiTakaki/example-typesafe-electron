@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { todoState } from '../store/todo';
+
 export const TodoComponent: React.SFC = () => {
   const todoValues = useRecoilValue(todoState);
   const setTodoState = useSetRecoilState(todoState);
@@ -13,7 +14,7 @@ export const TodoComponent: React.SFC = () => {
         completed: true,
       }
     ]);
-  }, []);
+  }, [todoValues]);
   const handleChecked =React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const strId = e.currentTarget.value;
     const result = todoValues.map((val) => {
